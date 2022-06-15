@@ -20,8 +20,8 @@ spec:
   image: couchbase/server:7.0.2
   security:
     adminSecret: cb-example-auth
-  buckets:
-    managed: true
+#  buckets:
+#    managed: true
   servers:
   - size: 1
     name: all_services
