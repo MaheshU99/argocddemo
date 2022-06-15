@@ -1,0 +1,48 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: cb-example-auth
+type: Opaque
+data:
+  username: QWRtaW5pc3RyYXRvcg== # Administrator
+  password: cGFzc3dvcmQ=         # password
+---
+apiVersion: couchbase.com/v2
+kind: CouchbaseBucket
+metadata:
+  name: content
+---
+apiVersion: couchbase.com/v2
+kind: CouchbaseCluster
+metadata:
+  name: cb-cluster
+spec:
+  image: couchbase/server:7.0.2
+  security:
+    adminSecret: cb-example-auth
+  buckets:
+    managed: true
+  servers:
+  - size: 1
+    name: all_services
+    services:
+    - data
+    - index
+    - query
+    - search
+      #    - eventing
+      #    - analytics
+    volumeMounts:
+      default: couchbase
+  backup:
+    managed: true 
+    image: couchbase/operator-backup:1.1.0 
+    serviceAccountName: couchbase-backup     
+  volumeClaimTemplates: 
+  - metadata:
+      name: couchbase 
+    spec:
+      #      storageClassName: standard 
+      resources: 
+        requests:
+          storage: 1Gi
