@@ -4,7 +4,7 @@ metadata:
   name: nginx
     #  namespace: devops
   labels:
-    app: nginx-run
+    app: nginx
 spec:
   containers:
   - name: nginx
