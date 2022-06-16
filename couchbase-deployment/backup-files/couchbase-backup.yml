@@ -5,7 +5,7 @@ metadata:
 spec:
   strategy: full_incremental
   full:
-    schedule: "06 30 * * *" 
+    schedule: "30 6 * * *" 
   incremental:
     schedule: "0 3 * * 1-6" 
   size: 5Gi 
