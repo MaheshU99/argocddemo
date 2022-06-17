@@ -1,0 +1,12 @@
+apiVersion: couchbase.com/v2
+kind: CouchbaseBackup
+metadata:
+  name: my-backup
+spec:
+  strategy: full_incremental
+  full:
+    schedule: "15 11 * * *"
+  incremental:
+    schedule: "0 3 * * 1-6"
+  size: 5Gi
+  s3bucket: s3://backup
