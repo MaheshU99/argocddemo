@@ -345,7 +345,7 @@ spec:
       labels:
         app.kubernetes.io/managed-by: "Helm"
         app.kubernetes.io/instance: "graphdb"
-        helm.sh/chart: "neo4j-4.0.4-1"
+        helm.sh/chart: "neo4j:4.0.4-enterprise"
         app.kubernetes.io/name: neo4j
         app.kubernetes.io/component: core
     spec:
