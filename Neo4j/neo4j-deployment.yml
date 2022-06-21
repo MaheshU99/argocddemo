@@ -75,7 +75,7 @@ data:
     NEO4J_SETTINGS[dbms_connector_https_enabled]=true
 
     # Default settings values; either inherit from outward settings,
-    # or, lacking any definition, take the local host
+    # or, lacking any definition, take the local host 
     NEO4J_SETTINGS[NEO4J_dbms_default__advertised__address]=${NEO4J_dbms_default__advertised__address:-$HOST}
     NEO4J_SETTINGS[NEO4J_dbms_connector_bolt_advertised__address]=${NEO4J_dbms_connector_bolt_advertised__address:-$HOST:7687}
     NEO4J_SETTINGS[NEO4J_dbms_connector_http_advertised__address]=${NEO4J_dbms_connector_http_advertised__address:-$HOST:7474}
@@ -84,12 +84,12 @@ data:
     neo4jAdminMemrec() {
         echo "Calling neo4j-admin memrec to suggest memory settings"
         # Neo4j-admin memrec outputs configuration like this: dbms.memory.heap.max_size=9000m
-        # with a lot of comments.  We strip the comments, then
+        # with a lot of comments.  We strip the comments, then 
         # process its output into a docker env var by following the Neo4j docker rules:
         # underscores doubled, dots -> _
         # So dbms.memory.heap.max_size=9000m => export NEO4J_dbms_memory_heap_max__size=9000m
-        for line in $(/var/lib/neo4j/bin/neo4j-admin memrec | grep -v '^\#' | sed 's/_/__/g' | sed 's/\./_/g' | sed 's/^/NEO4J_/g') ; do
-            echo export $line ;
+        for line in $(/var/lib/neo4j/bin/neo4j-admin memrec | grep -v '^\#' | sed 's/_/__/g' | sed 's/\./_/g' | sed 's/^/NEO4J_/g') ; do 
+            echo export $line ; 
         done > /var/lib/neo4j/conf/memory-recommendations.sh
 
         . /var/lib/neo4j/conf/memory-recommendations.sh
@@ -114,7 +114,7 @@ data:
     # metadata value or default value.  This sets us up for envsubst
     for setting in "${!NEO4J_SETTINGS[@]}" ; do
       # echo setting $setting
-      # echo default
+      # echo default 
       getSettingValue $setting "${NEO4J_SETTINGS[$setting]}"
       # echo "Setting $setting to $SETTING_VALUE"
 
@@ -218,7 +218,7 @@ data:
       echo "Running $1 against $ENDPOINT"
       output=$(cypher "$2" "$3")
 
-      if [ $? -eq 0 ] ; then
+      if [ $? -eq 0 ] ; then  
         succeed "$1"
       else
         echo "Last output -- $output"
@@ -240,7 +240,7 @@ data:
         break
       fi
 
-      if [ $attempt -ge "$attempts" ]; then
+      if [ $attempt -ge "$attempts" ]; then 
         echo "❌ BOLT API seems not to be coming up, giving up after $attempts attempts"
         exit 1
       fi
@@ -284,7 +284,7 @@ data:
 
       if [ $found_results -eq 1 ] ; then
         succeed "$test"
-      else
+      else 
         fail "$test" "Canary read did not return data -- $found_results found results from $result"
       fi
     else
@@ -310,7 +310,7 @@ metadata:
     app.kubernetes.io/component: core
 spec:
   clusterIP: None
-  publishNotReadyAddresses: true
+  publishNotReadyAddresses: true 
   ports:
     - name: http
       port: 7474
@@ -345,13 +345,13 @@ spec:
       labels:
         app.kubernetes.io/managed-by: "Helm"
         app.kubernetes.io/instance: "graphdb"
-        helm.sh/chart: "neo4j:4.0.4-enterprise"
+        helm.sh/chart: "neo4j-4.0.4-1"
         app.kubernetes.io/name: neo4j
         app.kubernetes.io/component: core
     spec:
       containers:
       - name: graphdb-neo4j
-        image: "neo4j-4.0.4-1"
+        image: "neo4j:4.0.4-enterprise"
         imagePullPolicy: "IfNotPresent"
         # Most pod config is factored into a different configMap, which is user overrideable.
         envFrom:
@@ -362,7 +362,7 @@ spec:
             valueFrom:
               secretKeyRef:
                 name: graphdb-neo4j-secrets
-                key: neo4j-password
+                key: neo4j-password      
         command:
           - "/bin/bash"
           - "-c"
@@ -412,7 +412,7 @@ spec:
           {}
       volumes:
         - name: init-script
-          configMap:
+          configMap: 
             name: "graphdb-init-script"
         - name: plugins
           emptyDir: {}
