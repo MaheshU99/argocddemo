@@ -6,7 +6,7 @@ spec:
   restartPolicy: Never
   containers:
     - name: neo4j-backup
-      image: neo4j:3.5-community
+      image: neo4j:4.0.4-enterprise
       env:
       - name: BACKUP_ADDR
         value: "graphdb-neo4j-core-0.graphdb-neo4j.default.svc.cluster.local:6362"
