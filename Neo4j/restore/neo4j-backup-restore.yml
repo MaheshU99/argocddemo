@@ -17,7 +17,7 @@ spec:
       command:
       - "/bin/bash"
       - "-c"
-      - "neo4j-admin restore --database=$BACKUP_DATABASE --from=/backup/$BACKUP_DATABASE" --force --verbose && chown -R neo4j:neo4j /data/
+      - "neo4j-admin restore --database=$BACKUP_DATABASE --from=/backup/$BACKUP_DATABASE --force --verbose && chown -R neo4j:neo4j /data/"
       volumeMounts:
       - name: backupdir
         mountPath: /backup
