@@ -17,7 +17,7 @@ spec:
       command:
       - "/bin/bash"
       - "-c"
-      - "neo4j-admin backup --name=neo4j --backup-dir=/backup/"
+      - "neo4j-admin backup --backup-dir=/backup/"
         #        neo4j-admin backup --name=neo4j --backup-dir=/backup/
       volumeMounts:
       - name: backupdir
