@@ -31,8 +31,8 @@ spec:
     spec:
       containers:
       - env:
-        #        - name: ELASTICSEARCH_HOSTS
-        #          value: http://elasticsearch-master:9200
+        - name: ELASTICSEARCH_HOSTS
+          value: http://172.28.17.176:30683
         - name: SERVER_HOST
           value: 0.0.0.0
         - name: NODE_OPTIONS
