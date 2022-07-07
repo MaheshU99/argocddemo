@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: "2022-07-06T13:39:07Z"
+  labels:
+    app: es-manual
+  name: es-manual
+  namespace: default
+  resourceVersion: "63155"
+  uid: 6c39e248-6ad9-493f-9a7c-e5b1d903ec19
+spec:
+  clusterIP: 10.111.40.227
+  clusterIPs:
+  - 10.111.40.227
+  externalTrafficPolicy: Cluster
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - nodePort: 30683
+    port: 9200
+    protocol: TCP
+    targetPort: 9200
+  selector:
+    app: es-manual
+  sessionAffinity: None
+  type: NodePort
+status:
+  loadBalancer: {}
