@@ -6,8 +6,6 @@ metadata:
     app: elasticsearch
   name: elasticsearch-svc
   namespace: default
-  resourceVersion: "63155"
-  uid: 6c39e248-6ad9-493f-9a7c-e5b1d903ec19
 spec:
   clusterIP: 10.111.40.227
   clusterIPs:
