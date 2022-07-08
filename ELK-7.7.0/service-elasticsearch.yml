@@ -3,8 +3,8 @@ kind: Service
 metadata:
   creationTimestamp: "2022-07-06T13:39:07Z"
   labels:
-    app: es-manual
-  name: es-manual
+    app: elasticsearch
+  name: elasticsearch-svc
   namespace: default
   resourceVersion: "63155"
   uid: 6c39e248-6ad9-493f-9a7c-e5b1d903ec19
@@ -23,7 +23,7 @@ spec:
     protocol: TCP
     targetPort: 9200
   selector:
-    app: es-manual
+    app: elasticsearch
   sessionAffinity: None
   type: NodePort
 status:
