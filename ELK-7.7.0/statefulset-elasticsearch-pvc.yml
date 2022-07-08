@@ -31,7 +31,7 @@ spec:
         - name: transport.host
           value: "127.0.0.1"
         - name: cluster.name
-          value: <SET THIS>
+          value: elasticsearch
         - name: discovery.type
           value: single-node
         - name: ES_JAVA_OPTS
