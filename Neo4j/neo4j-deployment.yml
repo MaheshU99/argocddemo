@@ -351,8 +351,8 @@ spec:
     spec:
       containers:
       - name: graphdb-neo4j
-#        image: "neo4j:4.0.4-enterprise"
-        image: "graphfoundation/ongdb:1.0"
+        image: "neo4j:4.0.4-enterprise"
+#        image: "graphfoundation/ongdb:1.0"
         imagePullPolicy: "IfNotPresent"
         # Most pod config is factored into a different configMap, which is user overrideable.
         envFrom:
